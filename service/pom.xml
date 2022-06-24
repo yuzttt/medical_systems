@@ -11,6 +11,7 @@
 <packaging>pom</packaging>
     <modules>
         <module>service-user</module>
+        <module>service-hosp</module>
     </modules>
     <artifactId>service</artifactId>
 
