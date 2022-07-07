@@ -17,14 +17,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 @ResponseBody  //将结果用json输出
 public class GlobalExceptionHandler {
     @ExceptionHandler(Exception.class)
-    public Result error(Exception e){
+    public Result error(Exception e) {
         e.printStackTrace();
         return Result.fail();
     }
 
     //自定义异常
     @ExceptionHandler(YyghException.class)
-    public Result error(YyghException e){
+    public Result error(YyghException e) {
         e.printStackTrace();
         return Result.fail();
     }

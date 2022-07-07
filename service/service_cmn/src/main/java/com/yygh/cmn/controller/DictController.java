@@ -6,6 +6,7 @@ import com.yygh.common.result.Result;
 import com.yygh.model.cmn.Dict;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiParam;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.web.bind.annotation.*;
@@ -21,7 +22,7 @@ import java.util.List;
  */
 @Api(tags = "数据字典管理")
 @RestController
-@CrossOrigin
+
 @RequestMapping("/admin/cmn/dict")
 public class DictController {
     @Autowired
@@ -47,5 +48,31 @@ public class DictController {
         dictService.importDictData(file);
         return Result.ok();
     }
+
+    @ApiOperation(value="根据dictcode和value查询")
+    @GetMapping("getName/{dictCode}/{value}")
+    public String getName(@PathVariable String dictCode,
+                          @PathVariable String value){
+    String dictName=dictService.getDictName(dictCode,value);
+    return dictName;
+    }
+
+
+    @ApiOperation(value="根据value查询")
+    @GetMapping("getName/{value}")
+    public String getName(@PathVariable String value){
+        String dictName=dictService.getDictName("",value);
+        return dictName;
+    }
+
+    @ApiOperation(value = "根据dictCode获取下级节点")
+    @GetMapping(value = "/findByDictCode/{dictCode}")
+    public Result<List<Dict>> findByDictCode(
+            @ApiParam(name = "dictCode", value = "节点编码", required = true)
+            @PathVariable String dictCode) {
+        List<Dict> list = dictService.findByDictCode(dictCode);
+        return Result.ok(list);
+    }
+
 
 }
