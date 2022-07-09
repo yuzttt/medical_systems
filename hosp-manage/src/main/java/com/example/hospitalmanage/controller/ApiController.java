@@ -17,11 +17,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import javax.servlet.http.HttpServletRequest;
 
-/**
- *
- * @author qy
- *
- */
+
 @Api(tags = "医院管理接口")
 @Controller
 @RequestMapping
